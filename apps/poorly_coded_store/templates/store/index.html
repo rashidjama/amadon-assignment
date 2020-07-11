@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Amadon</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-dark text-white">
+    <div class="container">
     <h1>Amadon Store!</h1>
-    <table>
+    <table class="table table-bordered text-white">
         <thead>
             <tr>
                 <th>Item</th>
@@ -20,10 +22,10 @@
         <tbody>
             {% for product in all_products %}
             <tr>
-                <form action="/checkout" method="post">
+                <form action="/purchase" method="post">
                     {% csrf_token %}
                     <td>{{product.description}}</td>
-                    <td><input type="hidden" name="price" value="{{product.price}}">{{product.price}}</td>
+                    <td><input type="hidden" name="price" value="{{product.id}}">{{product.price}}</td>
                     <td><select name="quantity">
                         <option value="1">1</option>              
                         <option value="2">2</option>              
@@ -35,5 +37,6 @@
             {% endfor %}
         </tbody>
     </table>
+    </div>
 </body>
 </html>
